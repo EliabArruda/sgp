@@ -1,12 +1,9 @@
 package com.eliab.sistemas.sgp.model;
 
-import jakarta.persistence.*;
-import lombok.Data;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
-import java.util.Date;
-import java.util.Set;
+import lombok.Data;
+import javax.persistence.*;
+
 
 @Entity
 @Data
