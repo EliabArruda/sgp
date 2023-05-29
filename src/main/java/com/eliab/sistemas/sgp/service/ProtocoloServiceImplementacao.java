@@ -1,5 +1,6 @@
 package com.eliab.sistemas.sgp.service;
 
+import com.eliab.sistemas.sgp.model.EnumStatus;
 import com.eliab.sistemas.sgp.model.Protocolo;
 import com.eliab.sistemas.sgp.model.Requerente;
 import com.eliab.sistemas.sgp.repository.ProtocoloRepository;
@@ -22,8 +23,7 @@ public class ProtocoloServiceImplementacao implements ProtocoloService{
     @Autowired
     private RequerenteService requerenteService;
 
-    //@Autowired
-    //private Requerente requerente;
+
 
 
     @Override
@@ -54,4 +54,43 @@ public class ProtocoloServiceImplementacao implements ProtocoloService{
     public void deletar(Long id) {
 
     }
+
+    @Override
+    public EnumStatus mudarStatus(Long id, EnumStatus status) {
+        Optional<Protocolo> protocolo = protocoloRepository.findById(id);
+        Protocolo obj = protocolo.get();
+
+        if (status == EnumStatus.DEFERIDO)
+           status.deferir(id, status);
+
+        else if(status == EnumStatus.INDEFERIDO)
+            status.indeferir(id,status);
+
+        obj.setStatus(status);
+        protocoloRepository.save(obj);
+        return status;
+    }
+
+
+    /*@Override
+    public EnumStatus deferir(Long id, EnumStatus status){
+        obj.setStatus(EnumStatus.DEFERIDO);
+        protocoloRepository.save(obj);
+
+
+        return EnumStatus.DEFERIDO;
+    }
+
+    @Override
+    public EnumStatus indeferir(Long id, EnumStatus status){
+
+        Optional<Protocolo> protocolo = protocoloRepository.findById(id);
+        Protocolo obj = protocolo.get();
+        obj.setStatus(EnumStatus.INDEFERIDO);
+        protocoloRepository.save(obj);
+        return EnumStatus.INDEFERIDO;
+    }
+
+     */
+
 }

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/requerentes")
 public class RequerenteController {
@@ -26,9 +28,4 @@ public class RequerenteController {
         return  ResponseEntity.ok(requerenteService.buscarPorId(id));
     }
 
-    @PostMapping("/salvar")
-    public ResponseEntity<Requerente> salvar(@RequestBody Requerente requerente){
-        requerenteService.salvar(requerente);
-        return ResponseEntity.ok(requerente);
-    }
 }
