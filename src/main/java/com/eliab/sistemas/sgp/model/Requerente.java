@@ -19,12 +19,14 @@ public class Requerente {
     @Size(min=2, message="O Campo 'nome' precisa ter no mínimo 2 caracteres.")
     private String nome;
 
-
+    @NotNull
+    @Size(min=2, message="O Campo 'endereco' precisa ter no mínimo 2 caracteres.")
     private String endereco;
 
     private String email;
 
-
+    @NotNull
+    @Size(min=2, message="O Campo 'telefone' precisa ter no mínimo 2 caracteres.")
     private String telefone;
 
 

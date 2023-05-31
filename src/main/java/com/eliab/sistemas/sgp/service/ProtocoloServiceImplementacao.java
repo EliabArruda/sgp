@@ -4,15 +4,11 @@ import com.eliab.sistemas.sgp.model.EnumStatus;
 import com.eliab.sistemas.sgp.model.Protocolo;
 import com.eliab.sistemas.sgp.model.Requerente;
 import com.eliab.sistemas.sgp.repository.ProtocoloRepository;
-import com.eliab.sistemas.sgp.repository.RequerenteRepository;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class ProtocoloServiceImplementacao implements ProtocoloService{
@@ -39,9 +35,9 @@ public class ProtocoloServiceImplementacao implements ProtocoloService{
 
 
     @Override
-    public Protocolo salvar(Protocolo protocolo) {
-        Requerente requerenteSalvo = requerenteService.salvar(protocolo.getRequerente());
-        protocolo.setRequerente(requerenteSalvo);
+    public Protocolo salvar(Protocolo protocolo) throws ConstraintViolationException {
+            Requerente requerenteSalvo = requerenteService.salvar(protocolo.getRequerente());
+             protocolo.setRequerente(requerenteSalvo);
         return protocoloRepository.save(protocolo);
     }
 
