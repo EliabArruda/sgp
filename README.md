@@ -19,14 +19,14 @@ O SGP tem como objetivo facilitar o controle organizacional dos protocolos gerad
   - ##### Implementação
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
-✅ Base do Projeto
-✅ Configuração
-✅ Implementação das Camadas Model e Repository
-⬜ Implementação da Base das Camadas Controller e Service
-⬜ Funcionalidades Principais
-⬜ Funcionalidades Adicionais
-⬜ Testes
-⬜ FeedBack
+- ✅ Base do Projeto
+- ✅ Configuração
+- ✅ Implementação das Camadas Model e Repository
+- ⬜ Implementação da Base das Camadas Controller e Service
+- ⬜ Funcionalidades Principais
+- ⬜ Funcionalidades Adicionais
+- ⬜ Testes
+- ⬜ FeedBack
 
 Base do Projeto: Adição das dependências das ferramentas utilizadas,
 definição e organização dos pacotes,
