@@ -23,6 +23,8 @@ public class Requerente {
     @Size(min=2, message="O Campo 'endereco' precisa ter no mínimo 2 caracteres.")
     private String endereco;
 
+    @NotNull
+    @Email(message = "O email deve ser válido")
     private String email;
 
     @NotNull
