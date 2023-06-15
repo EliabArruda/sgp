@@ -3,7 +3,6 @@ package com.eliab.sistemas.sgp.model;
 
 import com.eliab.sistemas.sgp.model.format.Formatado;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,7 +21,7 @@ public class Protocolo {
     private Long id;
 
 
-    private String numeroDoProtocolo;
+    private String protocolo;
 
     @ManyToOne
     private Requerente requerente;
@@ -39,22 +38,24 @@ public class Protocolo {
 
     public String getData() {
         DateTimeFormatter dataTime = DateTimeFormatter
-                .ofPattern("dd-MM-yyyy")
+                .ofPattern("yyyy-MM-dd")
                 .withResolverStyle(ResolverStyle.STRICT);
         LocalDateTime data = LocalDateTime.now();
         String formatado = data.format(dataTime);
         return formatado;
     }
 
-    public String getNumeroDoProtocolo() {
+    public String getProtocolo() {
         Formatado formatter = new Formatado();
 
-        this.numeroDoProtocolo = formatter.getFormatado();
+        this.protocolo = formatter.getFormatado();
         String idFormatado = String.format("%9s", id).replace(" ", "0");
 
-        String completo = numeroDoProtocolo + idFormatado;
+        String completo = protocolo + idFormatado;
         return completo;
     }
+
+
 
     /*
 

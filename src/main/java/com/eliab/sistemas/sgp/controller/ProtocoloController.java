@@ -7,12 +7,17 @@ import com.eliab.sistemas.sgp.model.Requerente;
 import com.eliab.sistemas.sgp.service.ProtocoloService;
 import com.eliab.sistemas.sgp.service.RequerenteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.validation.*;
 import java.time.LocalDateTime;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/protocolo")
 public class ProtocoloController {
@@ -22,6 +27,17 @@ public class ProtocoloController {
 
     @Autowired
     private RequerenteService requerenteService;
+
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurerAdapter() {
+            //@Override
+            public void addCorsMapping(CorsRegistry registry){
+                registry.addMapping("/**").allowedOrigins("*");
+            };
+        };
+    }
 
     @GetMapping("/busca-todos")
     public ResponseEntity<Iterable<Protocolo>> buscarTodos(){
