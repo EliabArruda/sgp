@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/adicionar_protocolo.css" rel="stylesheet">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.mask.min.js"></script>
+    <script type="text/javascript" src="../js/telefone_mask.js"></script>
+    <script type="text/javascript" src="../js/util/editar_protocolo.js"></script>
+    <script src="../js/sgp.js"></script>
+</head>
+
+<body onload="carregarDadosDoProtocolo(getQueryVariable('id'))">
+
+    <form id="protocoloForm">
+        <div id="form_adicionar_protocolo">
+            <div id="form_body">
+                <div id="head">
+                    <h3>Editar Protocolo</h3>
+                </div>
+
+                <div id="text">
+                    <div class="field-set">
+                        <div class="field-title">Número de Protocolo:</div>
+                        <div class="field-value" id="protocolo-value"></div>
+                    </div>
+
+                    <div class="field-set">
+                        <div class="field-title">Requerente:</div>
+                        <div class="field-value" id="requerente-value"></div>
+                    </div>
+
+                    <div class="field-set">
+                        <div class="field-title">Email:</div>
+                        <div class="field-value" id="email-value"></div>
+                    </div>
+
+                    <div class="field-set">
+                        <div class="field-title">Endereço:</div>
+                        <div class="field-value" id="endereco-value"></div>
+                    </div>
+
+                    <div class="field-set">
+                        <div class="field-title">Novo Status:</div>
+                        <div class="field-value">
+                            <select id="status" required>
+                                <option selected disabled>Selecione...</option>
+                                <option value="PENDENTE" class="PENDENTE" >Pendente</option>
+                                <option value="DEFERIDO" class="DEFERIDO">Deferido</option>
+                                <option value="INDEFERIDO"class="INDEFERIDO">Indeferido</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field-set">
+                        <div class="field-title">Telefone:</div>
+                        <div class="field-value" id="telefone-value"></div>
+                    </div>
+
+                    <div class="field-set" style="display: none;">
+                        <div class="field-title">Descrição:</div>
+                        <div class="field-value" id="descricao-value"></div>
+                    </div>
+
+                    <div class="field-set" style="display: none;">
+                        <div class="field-title">Id</div>
+                        <div class="field-value" id="id-value"></div>
+                    </div>
+
+                    <div class="center">
+                        <input id="submit" type="submit" name="submit" value="Enviar" style="margin-bottom: 10%; margin-top: 10%;">
+                    </div>
+                    <div id="mensagem" style="margin: auto; display: none; text-align: center; size: 25px;;">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>

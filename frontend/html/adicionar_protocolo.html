@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/adicionar_protocolo.css" rel="stylesheet">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.mask.min.js"></script>
+    <script type="text/javascript" src="../js/telefone_mask.js"></script>
+    <script src="../js/util/adicionar_protocolo.js"></script>
+</head>
+
+<body>
+    <form id="protocoloForm" method="post" action="http://localhost:8080/protocolo/salvar">
+        <div id="form_adicionar_protocolo">
+
+            <div id="form_body">
+                <div id="head">
+                    <h3>Adicionar Protocolo</h3>
+                </div>
+                <br />
+                <div id="input_requerente" class="input">
+                    <input id="requerente" type="text" Placeholder="Requerente" name="requerente" required>
+                </div>
+                <div id="input_protocolo" class="input" style="display: none">
+                    <input type="text" placeholder="Protocolo" name="protocolo" readonly>
+                </div>
+                <div id="input_endereco" class="input">
+                    <input id="endereco" type="text" Placeholder="Endereço" name="endereco" required>
+                </div>
+                <div id="input_email" class="input">
+                    <input id="email" type="text" placeholder="Email" name="email" required>
+                </div>
+                <div id="input_telefone" class="input">
+                    <input id="telefone" type="text" name="telefone" placeholder="Número do Telefone">
+                </div>
+                <div id="input_status" class="input" style="display: none">
+                    <input id="status" type="text" name="status" placeholder="Status/Situação" readonly value="Pendente">
+                </div>
+                <div id="input_data" class="input" style="display: none">
+                    <input id="data" type="text" name="data" placeholder="Data de Entrada" readonly>
+                </div>
+                <div id="input_descricao" class="input">
+                    <textarea id="descricao" name="descricao" rows="5" cols="33" placeholder="Descrição..."></textarea>
+                </div>
+
+                <div class="center">
+                    <input id="submit" type="submit" name="submit" value="Enviar">
+                </div>
+
+                <div id="mensagem" style="display: none;">
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
