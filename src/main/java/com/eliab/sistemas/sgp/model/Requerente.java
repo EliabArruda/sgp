@@ -20,9 +20,9 @@ public class Requerente {
     @Size(min = 2, message = "O Campo 'nome' precisa ter no mínimo 2 caracteres.")
     private String nome;
 
+    @ManyToOne
     @NotNull
-    @Size(min = 2, message = "O Campo 'endereco' precisa ter no mínimo 2 caracteres.")
-    private String endereco;
+    private Endereco endereco;
 
     @NotNull
     @Email(message = "O email deve ser válido")

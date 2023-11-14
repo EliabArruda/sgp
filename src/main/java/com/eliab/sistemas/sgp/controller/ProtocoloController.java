@@ -17,7 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import javax.validation.*;
 import java.time.LocalDateTime;
 
-@CrossOrigin
+
 @RestController
 @RequestMapping("/protocolo")
 public class ProtocoloController {
@@ -65,7 +65,7 @@ public class ProtocoloController {
         return ResponseEntity.ok(protocolo);
     }
 
-    @PutMapping("/{id}/mudar-status")
+    @PostMapping("/{id}/mudar-status")
     public ResponseEntity<EnumStatus> mudarStatus(@PathVariable Long id, EnumStatus status){
         protocoloService.mudarStatus(id, status);
         return ResponseEntity.ok(status);

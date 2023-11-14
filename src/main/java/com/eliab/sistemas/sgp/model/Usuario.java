@@ -1,11 +1,12 @@
 package com.eliab.sistemas.sgp.model;
 
 import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
 @Data
-public class Usuario extends Pessoa{
+public class Usuario{
 
     /**Construtores*/
     /*public Usuario(){
@@ -16,14 +17,16 @@ public class Usuario extends Pessoa{
         super(nome);
     }
     */
-   /***----------------------------*/
+    /***----------------------------*/
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
 
-   private String nivelAcesso;
+    private String username;
+
+    private String password;
 
 
 }

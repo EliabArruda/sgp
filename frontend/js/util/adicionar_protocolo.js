@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
             status: 'PENDENTE' // Você pode definir o status aqui ou como padrão no HTML
         };
 
-        enviarProtocolo(data, mensagemDiv);
+        enviarProtocolo(data);
 
     });
 });
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-function enviarProtocolo(data, mensagemDiv) {
+function enviarProtocolo(data) {
     fetch('http://localhost:8080/protocolo/salvar', {
             method: 'POST',
             headers: {
@@ -74,13 +74,13 @@ function enviarProtocolo(data, mensagemDiv) {
         .then(data => {
             // Lidar com a resposta do servidor (pode mostrar uma mensagem de sucesso, etc.)
             console.log('Resposta do servidor:', data);
-            mensagemDiv.textContent = "Mensagem de sucesso: Protocolo adicionado com êxito!";
+
 
         })
         .catch(error => {
             // Lidar com erros (exibir mensagem de erro, etc.)
             console.log('Erro:', error);
-            mensagemDiv.textContent = "Ocorreu um erro ao adicionar o protocolo.";
+
 
         });
 }

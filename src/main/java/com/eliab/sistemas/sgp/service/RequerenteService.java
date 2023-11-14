@@ -11,6 +11,7 @@ public interface RequerenteService {
 
    Requerente buscarPorId(Long id);
 
+   Requerente salvarRequerenteComCep(Requerente requerente);
    Requerente salvar(Requerente requerente);
 
 }

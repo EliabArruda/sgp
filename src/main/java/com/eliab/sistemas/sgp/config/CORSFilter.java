@@ -1,2 +1,4 @@
-package com.eliab.sistemas.sgp.config;public class CORSFilter {
+package com.eliab.sistemas.sgp.config;
+
+public class CORSFilter {
 }
