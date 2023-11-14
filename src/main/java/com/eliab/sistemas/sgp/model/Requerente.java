@@ -21,7 +21,6 @@ public class Requerente {
     private String nome;
 
     @ManyToOne
-    @NotNull
     private Endereco endereco;
 
     @NotNull
