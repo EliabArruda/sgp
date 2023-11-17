@@ -28,4 +28,8 @@ public class RequerenteController {
         return  ResponseEntity.ok(requerenteService.buscarPorId(id));
     }
 
+    @PostMapping("/salvar")
+    public ResponseEntity<Requerente> salvar(@Valid @RequestBody Requerente requerente){
+        return ResponseEntity.ok(requerenteService.salvar(requerente));
+    }
 }

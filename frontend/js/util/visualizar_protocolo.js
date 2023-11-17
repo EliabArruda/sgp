@@ -40,7 +40,7 @@ function visualizarProtocolo(atendimento) {
 
     document.getElementById('protocolo-value').textContent = atendimento.protocolo;
     document.getElementById('requerente-value').textContent = atendimento.requerente.nome;
-    document.getElementById('endereco-value').textContent = atendimento.requerente.endereco;
+    document.getElementById('endereco-value').textContent = atendimento.requerente.endereco.cep;
     document.getElementById('email-value').textContent = atendimento.requerente.email;
     document.getElementById('telefone-value').textContent = atendimento.requerente.telefone;
     document.getElementById('descricao-value').textContent = atendimento.descricao;

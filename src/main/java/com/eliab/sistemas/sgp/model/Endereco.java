@@ -3,7 +3,10 @@ package com.eliab.sistemas.sgp.model;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 /**
  * @see <a href="https://www.jsonschema2pojo.org/">www.jsonschema2pojo.org</a>
@@ -14,6 +17,7 @@ import javax.persistence.Id;
 @Data
 public class Endereco {
 
+    
     @Id
     private String cep;
 

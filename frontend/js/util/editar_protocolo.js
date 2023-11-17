@@ -26,7 +26,7 @@ function carregarDadosDoProtocolo(id) {
             document.getElementById('id-value').textContent = protocolo.id;
             document.getElementById('protocolo-value').textContent = protocolo.protocolo;
             document.getElementById('requerente-value').textContent = protocolo.requerente.nome;
-            document.getElementById('endereco-value').textContent = protocolo.requerente.endereco;
+            document.getElementById('endereco-value').textContent = protocolo.requerente.endereco.cep;
             document.getElementById('email-value').textContent = protocolo.requerente.email;
             document.getElementById('telefone-value').textContent = protocolo.requerente.telefone;
             document.getElementById('descricao-value').textContent = protocolo.descricao;
