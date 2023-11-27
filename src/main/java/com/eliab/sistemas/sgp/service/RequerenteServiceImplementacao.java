@@ -4,9 +4,13 @@ import com.eliab.sistemas.sgp.model.Endereco;
 import com.eliab.sistemas.sgp.model.Requerente;
 import com.eliab.sistemas.sgp.repository.EnderecoRepository;
 import com.eliab.sistemas.sgp.repository.RequerenteRepository;
+import feign.RetryableException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import java.util.Optional;
 
 
@@ -35,18 +39,30 @@ public class RequerenteServiceImplementacao implements RequerenteService{
 
     @Override
     public Requerente salvarRequerenteComCep(Requerente requerente) {
+            registrarEndereco(requerente);
+            return requerenteRepository.save(requerente);
+    }
+
+
+    @Override
+    public void registrarEndereco(Requerente requerente) {
         String cep = requerente.getEndereco().getCep();
 
-        /**Verifica se CEP do cliente já existe*/
         Endereco endereco = enderecoRepository.findById(cep).orElseGet(() -> {
-            /**Se não existir, integrar com o ViaCEP e retornar novo endereço*/
-            Endereco novoEndereco = enderecoService.consultarCep(cep);
+            Endereco novoEndereco = new Endereco();
+            novoEndereco.setCep(cep);
+
+            try {
+                novoEndereco = enderecoService.consultarCep(cep);
+            } catch (RetryableException e) {
+                e.printStackTrace();
+            }
+
             enderecoRepository.save(novoEndereco);
             return novoEndereco;
         });
 
         requerente.setEndereco(endereco);
-        return requerenteRepository.save(requerente);
     }
 
 
