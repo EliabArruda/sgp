@@ -9,7 +9,6 @@ import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
@@ -24,9 +23,6 @@ public class ProtocoloServiceImplementacao implements ProtocoloService{
     @Autowired
     private RequerenteService requerenteService;
 
-
-
-
     @Override
     public Iterable<Protocolo> buscarTodos() {
         return protocoloRepository.findAll();
@@ -37,7 +33,6 @@ public class ProtocoloServiceImplementacao implements ProtocoloService{
         Optional<Protocolo> busca = protocoloRepository.findById(id);
         return busca.get();
     }
-
 
     @Override
     public Protocolo salvar(Protocolo protocolo) throws ConstraintViolationException {
@@ -95,53 +90,4 @@ public class ProtocoloServiceImplementacao implements ProtocoloService{
         protocolo.setProtocolo(protocolo.getProtocolo() + idFormatado);
         return protocolo.getProtocolo();
     }
-
-
-    /*@Override
-    public EnumStatus deferir(Long id, EnumStatus status){
-        obj.setStatus(EnumStatus.DEFERIDO);
-        protocoloRepository.save(obj);
-
-
-        return EnumStatus.DEFERIDO;
-    }
-
-    @Override
-    public EnumStatus indeferir(Long id, EnumStatus status){
-
-        Optional<Protocolo> protocolo = protocoloRepository.findById(id);
-        Protocolo obj = protocolo.get();
-        obj.setStatus(EnumStatus.INDEFERIDO);
-        protocoloRepository.save(obj);
-        return EnumStatus.INDEFERIDO;
-    }
-
-     */
-
-    /*
-
-        String strContador = String.valueOf(zeros + id);
-
-        if (nCaracteresDoId == (nCaracteresDoId + 1)) {
-            strContador = String.valueOf(zeros.substring(1, numZeros) + id);
-        }
-
-        */
-
-    //FORMATAR ID COM 000000
-
-    /*
-    public static void main(String[] args) {
-        String[] ids = "1 3 76 874 9999 10987655 765432 98765432 9999999".split("\s+");
-        for (String id: ids) {
-            String dataFormatada = "20230601";
-            String idFormatado = String.format("%8s", id).replace(" ", "0");
-
-            String numeroProtocoloFormatado = dataFormatada + idFormatado;
-            System.out.println(numeroProtocoloFormatado);
-        }
-    }
-
-     */
-
 }

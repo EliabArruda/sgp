@@ -7,7 +7,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
 @Entity
 @Data
 public class Requerente {
@@ -30,34 +29,6 @@ public class Requerente {
     @NotNull
     @Size(min = 11, max = 11, message = "Número de Telefone Inválido")
     private String telefone;
-
-    
-
-    /*
-    public String getTelefone() {
-
-        String format = String.format("(" + telefone.substring(0,2) + ")" + telefone.substring(2, 3) + " " +
-                telefone.substring(3, 7) + "-" +
-                telefone.substring(7, 11));
-
-        return format;
-    }
-
-     */
-
-    /*
-    public static void main(String[] args) {
-        String telefone = "81985007186";
-
-        String format = String.format("(" + telefone.substring(0,2) + ")" + telefone.substring(2, 3) + " " +
-                telefone.substring(3, 7) + "-" +
-                telefone.substring(7, 11));
-
-        System.out.println(format);
-
-     */
-
-
 
     }
 

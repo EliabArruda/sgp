@@ -1,8 +1,6 @@
 package com.eliab.sistemas.sgp.controller;
 
-import com.eliab.sistemas.sgp.model.Protocolo;
 import com.eliab.sistemas.sgp.model.Requerente;
-import com.eliab.sistemas.sgp.service.ProtocoloService;
 import com.eliab.sistemas.sgp.service.RequerenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +11,6 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/requerentes")
 public class RequerenteController {
-
 
     @Autowired
     private RequerenteService requerenteService;

@@ -1,7 +1,5 @@
 package com.eliab.sistemas.sgp.model;
 
-import java.util.Optional;
-
 public enum EnumStatus {
 
         PENDENTE("Pendente"),

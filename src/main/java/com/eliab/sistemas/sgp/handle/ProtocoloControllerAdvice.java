@@ -20,7 +20,7 @@ public class ProtocoloControllerAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ProtocoloNotFoundException.class)
     public final ResponseEntity<Object> handleProtocoloNotFoundException(ProtocoloNotFoundException exception,
-                                                                    WebRequest request) {
+                                                                         WebRequest request) {
 
 
         ErrorDetails exceptionResponse = new ErrorDetails(LocalDateTime.now(), exception.getMessage(),
@@ -40,26 +40,3 @@ public class ProtocoloControllerAdvice extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 }
-    /*@ExceptionHandler(ProtocoloNotBlankException.class)
-    public ResponseEntity<Object> capturaErroDescricao() {
-
-        Map<String, Object> body = new HashMap<>();
-
-        body.put("erro: ", "Os campos não podem estar vazios.");
-
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
-    }
-
-    @ExceptionHandler(ProtocoloNullException.class)
-    public ResponseEntity<Object> capturaErroStatus() {
-
-        Map<String, Object> body = new HashMap<>();
-
-        body.put("erro: ", "O campo Status não pode ser nulo.");
-
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
-    }
-
-     */
-
-

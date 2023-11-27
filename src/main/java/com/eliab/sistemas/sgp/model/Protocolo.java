@@ -1,16 +1,10 @@
 package com.eliab.sistemas.sgp.model;
 
-
-import com.eliab.sistemas.sgp.model.format.Formatado;
 import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
-
 
 @Entity
 @Data

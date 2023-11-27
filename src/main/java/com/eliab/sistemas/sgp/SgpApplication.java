@@ -28,8 +28,6 @@ public class SgpApplication {
 		};
 	}
 
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(SgpApplication.class, args);
 	}

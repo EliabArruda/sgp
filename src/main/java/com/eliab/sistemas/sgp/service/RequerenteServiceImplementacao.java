@@ -7,22 +7,18 @@ import com.eliab.sistemas.sgp.repository.RequerenteRepository;
 import feign.RetryableException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
-import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
 import java.util.Optional;
 
 
 @Service
-public class RequerenteServiceImplementacao implements RequerenteService{
+public class RequerenteServiceImplementacao implements RequerenteService {
 
     @Autowired
     private RequerenteRepository requerenteRepository;
 
     @Override
     public Iterable<Requerente> buscarTodos() {
-     return requerenteRepository.findAll();
+        return requerenteRepository.findAll();
     }
 
     @Autowired
@@ -39,10 +35,9 @@ public class RequerenteServiceImplementacao implements RequerenteService{
 
     @Override
     public Requerente salvarRequerenteComCep(Requerente requerente) {
-            registrarEndereco(requerente);
-            return requerenteRepository.save(requerente);
+        registrarEndereco(requerente);
+        return requerenteRepository.save(requerente);
     }
-
 
     @Override
     public void registrarEndereco(Requerente requerente) {
@@ -64,7 +59,6 @@ public class RequerenteServiceImplementacao implements RequerenteService{
 
         requerente.setEndereco(endereco);
     }
-
 
     @Override
     public Requerente salvar(Requerente requerente) {

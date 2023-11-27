@@ -19,10 +19,4 @@ public interface ProtocoloService {
     void deletar(Long id);
 
     EnumStatus mudarStatus(Long id, EnumStatus status);
-
-   /* EnumStatus deferir(Long id,EnumStatus status);
-
-    EnumStatus indeferir(Long id, EnumStatus status);
-
-    */
 }
