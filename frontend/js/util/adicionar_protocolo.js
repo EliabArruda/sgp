@@ -9,11 +9,29 @@ document.addEventListener('DOMContentLoaded', function() {
         const endereco = document.getElementById('endereco').value;
         const telefone = document.getElementById('telefone').value;
         const descricao = document.getElementById('descricao').value;
+        const cep = document.getElementById('cep').value;
+        const logradouro = document.getElementById('logradouro').value;
+        const uf = document.getElementById('uf').value;
+        const bairro = document.getElementById('bairro').value;
+        const localidade = document.getElementById('localidade').value;
+        const complemento = document.getElementById('complemento').value;
+
+
+        const enderecoObj = {
+            cep: cep,
+            logradouro: logradouro,
+            uf: uf,
+            bairro: bairro,
+            localidade: localidade,
+            complemento: complemento
+        }
+
+
 
         // Criar o objeto requerente com os atributos
         const requerenteObj = {
             nome: requerente,
-            endereco: endereco,
+            endereco: enderecoObj,
             email: email,
             telefone: telefone.replace(/\D/g, '')
         };

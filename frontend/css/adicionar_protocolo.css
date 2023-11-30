@@ -33,6 +33,32 @@ input {
     border: 1px solid rgb(11, 92, 0);
 }
 
+input {
+    display: block;
+    background: snow;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 12px;
+    padding: 8px 14px 8px 20px;
+    border: 1px solid rgb(11, 92, 0);
+}
+
+input#uf {
+    display: block;
+    background: snow;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 20%;
+    margin-left: auto;
+    margin-right: 60%;
+    font-size: 12px;
+    padding: 8px 14px 8px 20px;
+    border: 1px solid rgb(11, 92, 0);
+}
+
 textarea {
     width: 90%;
     display: block;

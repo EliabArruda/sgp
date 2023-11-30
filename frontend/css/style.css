@@ -254,6 +254,13 @@
     
     #tabela-protocolos th,
     #tabela-protocolos td {
+        text-align: left;
+        padding: 12px;
+    }
+    
+    #tabela-protocolos td.INDEFERIDO,
+    #tabela-protocolos td.DEFERIDO,
+    #tabela-protocolos td.PENDENTE {
         text-align: center;
         padding: 12px;
     }
