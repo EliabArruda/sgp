@@ -46,14 +46,27 @@ input {
     border: 1px solid rgb(11, 92, 0);
 }
 
-input#uf {
+select#uf {
     display: block;
     background: snow;
     background-position: 10px 10px;
     background-repeat: no-repeat;
-    width: 20%;
+    width: 30%;
     margin-left: auto;
-    margin-right: 60%;
+    margin-right: 65%;
+    font-size: 12px;
+    padding: 8px 14px 8px 20px;
+    border: 1px solid rgb(11, 92, 0);
+}
+
+select#cidade {
+    display: block;
+    background: snow;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 30%;
+    margin-left: auto;
+    margin-right: 65%;
     font-size: 12px;
     padding: 8px 14px 8px 20px;
     border: 1px solid rgb(11, 92, 0);

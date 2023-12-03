@@ -13,7 +13,6 @@
 <body>
     <form id="protocoloForm" method="post" action="http://localhost:8080/protocolo/salvar">
         <div id="form_adicionar_protocolo">
-
             <div id="form_body">
                 <div id="head">
                     <h3>Adicionar Protocolo</h3>
@@ -21,9 +20,6 @@
                 <br />
                 <div id="input_requerente" class="input">
                     <input id="requerente" type="text" Placeholder="Requerente" name="requerente" required>
-                </div>
-                <div id="input_protocolo" class="input" style="display: none">
-                    <input type="text" placeholder="Protocolo" name="protocolo" readonly>
                 </div>
                 <div id="endereco_list">
                     <div id="input_cep" class="input">
@@ -33,7 +29,14 @@
                         <input id="logradouro" type="text" Placeholder="Logradouro" name="logradouro" readonly>
                     </div>
                     <div id="input_uf" class="input">
-                        <input id="uf" type="text" Placeholder="UF" name="uf" readonly>
+                        <select id="uf" name="uf" required>
+                            <option value="" selected disabled>Selecione UF</option>
+                        </select>
+                    </div>
+                    <div id="input_cidade" class="input">
+                        <select id="cidade" name="cidade" required>
+                            <option value="" selected disabled>Selecione Cidade</option>
+                        </select>
                     </div>
                 </div>
                 <div id="input_email" class="input">

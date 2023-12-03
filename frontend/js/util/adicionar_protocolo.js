@@ -1,32 +1,45 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('protocoloForm');
+    const mensagemDiv = document.getElementById('mensagem');
+
+    // Carregar UFs ao carregar a página
+    carregarUFs();
+
+    // Adiciona um ouvinte de evento para o evento de entrada (input) na UF
+    document.getElementById('uf').addEventListener('input', function() {
+        const ufSelecionada = document.getElementById('uf').value;
+
+        // Verifica se a UF foi selecionada
+        if (ufSelecionada) {
+            carregarCidades(ufSelecionada);
+        } else {
+            // Limpa o <select> de cidades se a UF não estiver selecionada
+            document.getElementById('cidade').innerHTML = "";
+        }
+    });
+
     form.addEventListener('submit', function(e) {
         e.preventDefault();
 
-
         const requerente = document.getElementById('requerente').value;
         const email = document.getElementById('email').value;
-        const endereco = document.getElementById('endereco').value;
         const telefone = document.getElementById('telefone').value;
         const descricao = document.getElementById('descricao').value;
         const cep = document.getElementById('cep').value;
         const logradouro = document.getElementById('logradouro').value;
         const uf = document.getElementById('uf').value;
         const bairro = document.getElementById('bairro').value;
-        const localidade = document.getElementById('localidade').value;
+        const cidade = document.getElementById('cidade').value;
         const complemento = document.getElementById('complemento').value;
-
 
         const enderecoObj = {
             cep: cep,
             logradouro: logradouro,
             uf: uf,
             bairro: bairro,
-            localidade: localidade,
+            cidade: cidade,
             complemento: complemento
         }
-
-
 
         // Criar o objeto requerente com os atributos
         const requerenteObj = {
@@ -39,13 +52,58 @@ document.addEventListener('DOMContentLoaded', function() {
         const data = {
             requerente: requerenteObj,
             descricao: descricao,
-            status: 'PENDENTE' // Você pode definir o status aqui ou como padrão no HTML
+            status: 'PENDENTE'
         };
 
         enviarProtocolo(data);
-
     });
 });
+
+function carregarUFs() {
+    fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+        .then(response => response.json())
+        .then(ufs => {
+            const ufSelect = document.getElementById('uf');
+            ufSelect.innerHTML = '<option value="" selected disabled>Selecione UF</option>';
+            ufs.forEach(uf => {
+                ufSelect.innerHTML += `<option value="${uf.sigla}">${uf.sigla} - ${uf.nome}</option>`;
+            });
+        })
+        .catch(error => {
+            console.log('Erro ao carregar UFs:', error);
+        });
+}
+
+function carregarCidades(uf) {
+    const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`;
+
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao carregar cidades.');
+            }
+            return response.json();
+        })
+        .then(cidades => {
+            // Obtém a referência ao elemento <select> no seu formulário
+            const selectCidade = document.getElementById('cidade');
+
+            // Limpa as opções existentes no <select>
+            selectCidade.innerHTML = "";
+
+            // Preenche o <select> com as opções de cidades
+            cidades.forEach(cidade => {
+                const option = document.createElement('option');
+                option.value = cidade.nome; // Ou outro identificador único, se disponível
+                option.text = cidade.nome;
+                selectCidade.add(option);
+            });
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+        });
+}
+
 
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('protocoloForm');
