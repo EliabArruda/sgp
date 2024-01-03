@@ -6,7 +6,7 @@ public enum EnumStatus {
         DEFERIDO("Deferido"),
         INDEFERIDO("Indeferido");
 
-        private String status;
+        private final String status;
 
         EnumStatus(String statusDescricao){
             this.status = statusDescricao;

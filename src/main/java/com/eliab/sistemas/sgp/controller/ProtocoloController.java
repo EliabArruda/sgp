@@ -29,7 +29,7 @@ public class ProtocoloController {
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurerAdapter() {
             //@Override
-            public void addCorsMapping(CorsRegistry registry) {
+            public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**").allowedOrigins("*");
             }
         };
@@ -58,6 +58,7 @@ public class ProtocoloController {
             ErrorDetails ed = new ErrorDetails(LocalDateTime.now(), sb.toString(), e.getMessage());
             return ResponseEntity.badRequest().body(ed);
         }
+
         return ResponseEntity.ok(protocolo);
     }
 

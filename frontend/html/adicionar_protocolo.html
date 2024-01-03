@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -8,6 +9,7 @@
     <script type="text/javascript" src="../js/jquery.mask.min.js"></script>
     <script type="text/javascript" src="../js/telefone_mask.js"></script>
     <script src="../js/util/adicionar_protocolo.js"></script>
+
 </head>
 
 <body>
@@ -19,24 +21,37 @@
                 </div>
                 <br />
                 <div id="input_requerente" class="input">
-                    <input id="requerente" type="text" Placeholder="Requerente" name="requerente" required>
+                    <input id="requerente" type="text" placeholder="Requerente" name="requerente" required>
                 </div>
                 <div id="endereco_list">
                     <div id="input_cep" class="input">
-                        <input id="cep" type="text" Placeholder="CEP" name="cep" required>
+                        <input id="cep" type="text" placeholder="CEP" name="cep" required maxlength="8">
                     </div>
                     <div id="input_logradouro" class="input">
-                        <input id="logradouro" type="text" Placeholder="Logradouro" name="logradouro" readonly>
+                        <input id="logradouro" type="text" placeholder="Logradouro" name="logradouro" readonly>
                     </div>
                     <div id="input_uf" class="input">
-                        <select id="uf" name="uf" required>
-                            <option value="" selected disabled>Selecione UF</option>
-                        </select>
+                        <input id="uf" type="text" placeholder="UF" name="uf">
                     </div>
+
                     <div id="input_cidade" class="input">
-                        <select id="cidade" name="cidade" required>
-                            <option value="" selected disabled>Selecione Cidade</option>
-                        </select>
+                        <input id="cidade" type="text" placeholder="Cidade" name="cidade">
+                    </div>
+
+                    <div id="input_bairro" class="input">
+                        <input id="bairro" type="text" placeholder="Bairro" name="bairro" readonly>
+                    </div>
+                    <div id="input_ibge" class="input">
+                        <input id="ibge" type="text" placeholder="IBGE" name="ibge" readonly>
+                    </div>
+                    <div id="input_gia" class="input">
+                        <input id="gia" type="text" placeholder="GIA" name="gia" readonly>
+                    </div>
+                    <div id="input_ddd" class="input">
+                        <input id="ddd" type="text" placeholder="DDD" name="ddd" readonly>
+                    </div>
+                    <div id="input_siafi" class="input">
+                        <input id="siafi" type="text" placeholder="SIAFI" name="siafi" readonly>
                     </div>
                 </div>
                 <div id="input_email" class="input">
@@ -45,12 +60,10 @@
                 <div id="input_telefone" class="input">
                     <input id="telefone" type="text" name="telefone" placeholder="Número do Telefone">
                 </div>
-                <div id="input_status" class="input" style="display: none">
+                <div id="input_status" class="input">
                     <input id="status" type="text" name="status" placeholder="Status/Situação" readonly value="Pendente">
                 </div>
-                <div id="input_data" class="input" style="display: none">
-                    <input id="data" type="text" name="data" placeholder="Data de Entrada" readonly>
-                </div>
+
                 <div id="input_descricao" class="input">
                     <textarea id="descricao" name="descricao" rows="5" cols="33" placeholder="Descrição..."></textarea>
                 </div>

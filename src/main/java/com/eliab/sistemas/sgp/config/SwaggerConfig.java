@@ -2,6 +2,7 @@ package com.eliab.sistemas.sgp.config;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,8 +50,8 @@ public class SwaggerConfig {
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(this.informacoesApi().build())
-                .consumes(new HashSet<String>(Arrays.asList("application/json")))
-                .produces(new HashSet<String>(Arrays.asList("application/json")));
+                .consumes(new HashSet<String>(List.of("application/json")))
+                .produces(new HashSet<String>(List.of("application/json")));
 
         return docket;
     }

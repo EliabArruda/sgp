@@ -1,6 +1,8 @@
 package com.eliab.sistemas.sgp.model;
 
+import com.eliab.sistemas.sgp.model.format.Formatado;
 import lombok.Data;
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -8,11 +10,13 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Data
+
 public class Protocolo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
 
 
     private String protocolo;
@@ -28,6 +32,8 @@ public class Protocolo {
     private String descricao;
 
     private String data;
+
+
 }
 
 
