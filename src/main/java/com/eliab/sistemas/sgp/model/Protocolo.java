@@ -18,7 +18,6 @@ public class Protocolo {
     private Long id;
 
 
-
     private String protocolo;
 
     @ManyToOne
