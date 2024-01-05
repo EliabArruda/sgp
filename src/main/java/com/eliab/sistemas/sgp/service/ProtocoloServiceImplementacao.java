@@ -40,9 +40,7 @@ public class ProtocoloServiceImplementacao implements ProtocoloService{
         protocolo.setRequerente(requerenteSalvo);
 
         formatarData(protocolo);
-        //método 'count()' conta número de linhas em uma tabela
         formatarProtocolo(protocolo, (protocoloRepository.count()) + 1);
-        System.out.println("Requisição recebida: " + protocolo.toString());
 
         return protocoloRepository.save(protocolo);
     }
@@ -60,19 +58,22 @@ public class ProtocoloServiceImplementacao implements ProtocoloService{
     @Override
     public EnumStatus mudarStatus(Long id, EnumStatus status) {
         Optional<Protocolo> protocolo = protocoloRepository.findById(id);
-        Protocolo obj = protocolo.get();
+        if (protocolo.isPresent()) {
+            Protocolo obj = protocolo.get();
 
-        if (status == EnumStatus.DEFERIDO)
-            status.deferir(id, status);
+            if (obj.getStatus() == EnumStatus.PENDENTE) {
 
-        else if(status == EnumStatus.INDEFERIDO)
-            status.indeferir(id,status);
+                obj.setStatus(status);
+                protocoloRepository.save(obj);
 
-        obj.setStatus(status);
-        protocoloRepository.save(obj);
-        return status;
+                return status;
+            } else {
+                throw new IllegalStateException("Não é possível alterar o status de um protocolo já deferido ou indeferido.");
+            }
+        } else {
+            throw new IllegalArgumentException("Protocolo com ID " + id + " não encontrado.");
+        }
     }
-
     public String formatarData(Protocolo protocolo) {
 
         DateTimeFormatter dataTime = DateTimeFormatter
@@ -86,9 +87,10 @@ public class ProtocoloServiceImplementacao implements ProtocoloService{
     public String formatarProtocolo(Protocolo protocolo, Long id) {
         Formatado formatter = new Formatado();
 
-        protocolo.setProtocolo(formatter.getFormatado());
-        String idFormatado = String.format("%9s", id).replace(" ", "0");
-        protocolo.setProtocolo(protocolo.getProtocolo() + idFormatado);
+            protocolo.setProtocolo(formatter.getFormatado());
+            String idFormatado = String.format("%9s", id).replace(" ", "0");
+            protocolo.setProtocolo(protocolo.getProtocolo() + idFormatado);
+
         return protocolo.getProtocolo();
     }
 }

@@ -11,12 +11,5 @@ public enum EnumStatus {
         EnumStatus(String statusDescricao){
             this.status = statusDescricao;
         }
-
-    public EnumStatus deferir(Long id, EnumStatus status){
-        return EnumStatus.DEFERIDO;
-    }
-    public EnumStatus indeferir(Long id, EnumStatus status){
-        return EnumStatus.INDEFERIDO;
-    }
     }
 
