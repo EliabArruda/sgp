@@ -28,11 +28,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Adiciona um ouvinte de evento para o envio do formulário
     form.addEventListener('submit', function(event) {
         event.preventDefault(); // Impede o envio padrão do formulário
+
+        // Atualiza o valor do campo data
+        document.getElementById('data').value = new Date().toISOString();
+
         const formData = obterDadosFormulario();
         console.log(formData);
         enviarProtocolo(formData);
     });
-
 
     function carregarUFs() {
         fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
@@ -99,7 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('gia').value = endereco.gia || '';
         document.getElementById('ddd').value = endereco.ddd || '';
         document.getElementById('siafi').value = endereco.siafi || '';
-
     }
 
     function obterDadosFormulario() {
@@ -108,22 +110,30 @@ document.addEventListener('DOMContentLoaded', function() {
         var telefone = document.getElementById('telefone').value;
         var status = document.getElementById('status').value;
         var descricao = document.getElementById('descricao').value;
+        var data = document.getElementById('data').value;
 
         // Construir objeto de dados
-        var dadosFormulario = {
+        const dadosFormulario = {
             requerente: {
                 nome: requerenteNome,
+                // Adicione outros campos de requerente conforme necessário
             },
-            email: email,
-            telefone: telefone,
-            status: status,
-            descricao: descricao,
+            protocolo: {
+                status: status,
+                descricao: descricao,
+                data: data
+            }
         };
+
+        // Convertendo o objeto protocolo para uma string
+        dadosFormulario.protocolo = JSON.stringify(dadosFormulario.protocolo);
 
         return dadosFormulario;
     }
 
     function enviarProtocolo(dadosFormulario) {
+        console.log('Corpo da requisição:', JSON.stringify(dadosFormulario));
+
         // Enviar requisição POST
         fetch('http://localhost:8080/protocolo/salvar', {
                 method: 'POST',
@@ -146,6 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 });
+
 
 
 $(document).ready(function() {
