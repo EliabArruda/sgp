@@ -40,7 +40,12 @@ function visualizarProtocolo(atendimento) {
 
     document.getElementById('protocolo-value').textContent = atendimento.protocolo;
     document.getElementById('requerente-value').textContent = atendimento.requerente.nome;
-    document.getElementById('endereco-value').textContent = atendimento.requerente.endereco.cep;
+    var endereco = atendimento.requerente.endereco;
+    var enderecoString = `CEP: ${endereco.cep}, ${endereco.logradouro}, ${endereco.bairro}, ${endereco.uf}, ${endereco.localidade}, ${endereco.complemento}`;
+
+    var enderecoDiv = document.getElementById('endereco-value');
+    enderecoDiv.textContent = `Endereço: ${enderecoString.replace(/, /g, ' | ')}`;
+
     document.getElementById('email-value').textContent = atendimento.requerente.email;
     document.getElementById('telefone-value').textContent = atendimento.requerente.telefone;
     document.getElementById('descricao-value').textContent = atendimento.descricao;
