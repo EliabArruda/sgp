@@ -1,8 +1,8 @@
 package com.eliab.sistemas.sgp.service;
 
-import com.eliab.sistemas.sgp.model.EnumStatus;
 import com.eliab.sistemas.sgp.model.Protocolo;
 import com.eliab.sistemas.sgp.model.Requerente;
+import com.eliab.sistemas.sgp.model.StatusEnum;
 import com.eliab.sistemas.sgp.model.format.Formatado;
 import com.eliab.sistemas.sgp.repository.ProtocoloRepository;
 import org.hibernate.exception.ConstraintViolationException;
@@ -13,6 +13,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.Optional;
+
+import static com.eliab.sistemas.sgp.model.StatusEnum.PENDENTE;
 
 @Service
 public class ProtocoloServiceImplementacao implements ProtocoloService{
@@ -56,15 +58,19 @@ public class ProtocoloServiceImplementacao implements ProtocoloService{
     }
 
     @Override
-    public EnumStatus mudarStatus(Long id, EnumStatus status) {
-        Optional<Protocolo> protocolo = protocoloRepository.findById(id);
-        if (protocolo.isPresent()) {
-            Protocolo obj = protocolo.get();
+    public String mudarStatus(Long id, String status) {
+        Optional<Protocolo> protocoloOpt = protocoloRepository.findById(id);
+        if (protocoloOpt.isPresent()) {
+            Protocolo protocolo = protocoloOpt.get();
 
-            if (obj.getStatus() == EnumStatus.PENDENTE) {
+            if (!StatusEnum.isValid(status)) {
+                throw new IllegalArgumentException("Status " + status + " não é válido.");
+            }
 
-                obj.setStatus(status);
-                protocoloRepository.save(obj);
+            if (PENDENTE.toString().equals(protocolo.getStatus())) {
+
+                protocolo.setStatus(status);
+                protocoloRepository.save(protocolo);
 
                 return status;
             } else {
@@ -93,4 +99,5 @@ public class ProtocoloServiceImplementacao implements ProtocoloService{
 
         return protocolo.getProtocolo();
     }
+
 }

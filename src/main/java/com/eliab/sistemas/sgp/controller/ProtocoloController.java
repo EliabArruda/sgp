@@ -1,7 +1,6 @@
 package com.eliab.sistemas.sgp.controller;
 
 import com.eliab.sistemas.sgp.handle.ErrorDetails;
-import com.eliab.sistemas.sgp.model.EnumStatus;
 import com.eliab.sistemas.sgp.model.Protocolo;
 import com.eliab.sistemas.sgp.service.ProtocoloService;
 import com.eliab.sistemas.sgp.service.RequerenteService;
@@ -63,7 +62,7 @@ public class ProtocoloController {
     }
 
     @PostMapping("/{id}/mudar-status")
-    public ResponseEntity<EnumStatus> mudarStatus(@PathVariable Long id, EnumStatus status) {
+    public ResponseEntity<String> mudarStatus(@PathVariable Long id, String status) {
         protocoloService.mudarStatus(id, status);
         return ResponseEntity.ok(status);
     }

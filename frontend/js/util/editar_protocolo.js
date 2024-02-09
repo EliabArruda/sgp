@@ -26,7 +26,12 @@ function carregarDadosDoProtocolo(id) {
             document.getElementById('id-value').textContent = protocolo.id;
             document.getElementById('protocolo-value').textContent = protocolo.protocolo;
             document.getElementById('requerente-value').textContent = protocolo.requerente.nome;
-            document.getElementById('endereco-value').textContent = protocolo.requerente.endereco.cep;
+
+            var endereco = protocolo.requerente.endereco;
+            var enderecoString = `CEP: ${endereco.cep}, ${endereco.logradouro}, ${endereco.bairro}, ${endereco.uf}, ${endereco.localidade}, ${endereco.complemento}`;
+
+            var enderecoDiv = document.getElementById('endereco-value');
+            enderecoDiv.textContent = `Endereço: ${enderecoString.replace(/, /g, ' | ')}`;
             document.getElementById('email-value').textContent = protocolo.requerente.email;
             document.getElementById('telefone-value').textContent = protocolo.requerente.telefone;
             document.getElementById('descricao-value').textContent = protocolo.descricao;
@@ -56,33 +61,29 @@ function mudarStatus(id, novoStatus, mensagemDiv) {
     statusObj = { status: novoStatus };
     console.log("Vai carregar!");
 
-    if (novoStatus === 'PENDENTE') {
-        mensagemDiv.textContent = "O status não pode ser alterado para Pendente!";
-        mensagemDiv.style.display = 'block';
-    } else {
-        fetch('http://localhost:8080/protocolo/' + id + '/mudar-status?status=' + novoStatus, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(statusObj),
-            })
-            .then(response => {
-                if (response.status === 200) {
-                    return response.json();
-                } else {
-                    throw new Error('Erro na solicitação: ' + response.status);
-                }
-            })
-            .then(responseData => {
-                console.log('Resposta do servidor:', responseData);
-                mensagemDiv.textContent = "Protocolo modificado com sucesso!";
-                mensagemDiv.style.display = 'flex';
-            })
-            .catch(error => {
-                console.log('Erro:', error);
-                mensagemDiv.textContent = "Ocorreu um erro ao modificar o protocolo.";
-                mensagemDiv.style.display = 'block';
-            });
-    }
+
+    fetch('http://localhost:8080/protocolo/' + id + '/mudar-status?status=' + novoStatus, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(statusObj),
+        })
+        .then(response => {
+            if (response.status === 200) {
+                return response.json();
+            } else {
+                throw new Error('Erro na solicitação: ' + response.status);
+            }
+        })
+        .then(responseData => {
+            console.log('Resposta do servidor:', responseData);
+            mensagemDiv.textContent = "Protocolo modificado com sucesso!";
+            mensagemDiv.style.display = 'flex';
+        })
+        .catch(error => {
+            console.log('Erro:', error);
+            mensagemDiv.textContent = "Ocorreu um erro ao modificar o protocolo.";
+            mensagemDiv.style.display = 'block';
+        });
 }

@@ -1,8 +1,6 @@
 package com.eliab.sistemas.sgp.service;
 
-import com.eliab.sistemas.sgp.model.EnumStatus;
 import com.eliab.sistemas.sgp.model.Protocolo;
-import com.eliab.sistemas.sgp.model.Requerente;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,5 +16,5 @@ public interface ProtocoloService {
 
     void deletar(Long id);
 
-    EnumStatus mudarStatus(Long id, EnumStatus status);
+    String mudarStatus(Long id, String status);
 }
