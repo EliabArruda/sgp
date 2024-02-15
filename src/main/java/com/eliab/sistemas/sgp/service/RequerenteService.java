@@ -7,13 +7,9 @@ import org.springframework.stereotype.Service;
 public interface RequerenteService {
 
    Iterable<Requerente> buscarTodos();
-
    Requerente buscarPorId(Long id);
 
-   void registrarEndereco(Requerente requerente);
-
-   Requerente salvarRequerenteComCep(Requerente requerente);
-
    Requerente salvar(Requerente requerente);
+
 
 }

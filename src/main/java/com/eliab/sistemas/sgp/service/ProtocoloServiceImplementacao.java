@@ -70,6 +70,7 @@ public class ProtocoloServiceImplementacao implements ProtocoloService{
             if (PENDENTE.toString().equals(protocolo.getStatus())) {
 
                 protocolo.setStatus(status);
+                System.out.println(status);
                 protocoloRepository.save(protocolo);
 
                 return status;
