@@ -20,8 +20,8 @@ public class Requerente {
     private String nome;
 
 
-    @NotNull
-    private String endereco;
+    @ManyToOne
+    private Endereco endereco;
 
     @NotNull
     @Email(message = "O email deve ser válido")

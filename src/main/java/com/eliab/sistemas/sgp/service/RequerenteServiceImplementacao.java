@@ -1,5 +1,6 @@
 package com.eliab.sistemas.sgp.service;
 
+import com.eliab.sistemas.sgp.model.Endereco;
 import com.eliab.sistemas.sgp.model.Requerente;
 import com.eliab.sistemas.sgp.repository.RequerenteRepository;
 import feign.RetryableException;
@@ -14,6 +15,9 @@ public class RequerenteServiceImplementacao implements RequerenteService {
     @Autowired
     private RequerenteRepository requerenteRepository;
 
+    @Autowired
+    private EnderecoService enderecoService;
+
     @Override
     public Iterable<Requerente> buscarTodos() {
         return requerenteRepository.findAll();
@@ -26,6 +30,9 @@ public class RequerenteServiceImplementacao implements RequerenteService {
     }
     @Override
     public Requerente salvar(Requerente requerente) {
+        Endereco enderecoRegistrado = enderecoService.salvar(requerente.getEndereco());
+        requerente.setEndereco(enderecoRegistrado);
+
         return requerenteRepository.save(requerente);
 
     }
