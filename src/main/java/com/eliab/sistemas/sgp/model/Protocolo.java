@@ -1,12 +1,19 @@
 package com.eliab.sistemas.sgp.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Protocolo {
 
     @Id
@@ -26,9 +33,5 @@ public class Protocolo {
     private String descricao;
 
     private String data;
-
-    public Protocolo(){
-        this.status = "PENDENTE";
-    }
 
 }

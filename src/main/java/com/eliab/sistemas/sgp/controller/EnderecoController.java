@@ -46,4 +46,10 @@ public class EnderecoController {
     public ResponseEntity<Endereco> buscarPorId(@PathVariable Long id){
         return ResponseEntity.ok(enderecoService.buscarPorId(id));
     }
+
+    @DeleteMapping(value = "/deleta-todos")
+    public ResponseEntity<?> deletarTodos(){
+        enderecoService.deletarTodos();
+        return ResponseEntity.ok("Deletado com Sucesso!");
+    }
 }

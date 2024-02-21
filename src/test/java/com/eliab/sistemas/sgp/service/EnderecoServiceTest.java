@@ -2,7 +2,6 @@ package com.eliab.sistemas.sgp.service;
 
 import com.eliab.sistemas.sgp.exception.EnderecoNotFoundException;
 import com.eliab.sistemas.sgp.model.Endereco;
-import com.eliab.sistemas.sgp.model.StatusEnum;
 import com.eliab.sistemas.sgp.repository.EnderecoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,17 +20,20 @@ public class EnderecoServiceTest {
     @Autowired
     private EnderecoService enderecoService;
 
+    @Autowired
+    private EnderecoRepository enderecoRepository;
+
     private Endereco endereco;
 
     @BeforeEach
     public void setUp() {
         this.endereco = Endereco.builder()
-                .cep("53")
-                .logradouro("")
-                .uf("")
-                .localidade("")
-                .bairro("")
-                .numeroCasa("")
+                .cep("53437320")
+                .logradouro("Rua Joao Alfredo")
+                .uf("PE")
+                .localidade("Paulista")
+                .bairro("Janga")
+                .numeroCasa("248")
                 .build();
 
     }
@@ -73,8 +75,27 @@ public class EnderecoServiceTest {
     @Test
     public void buscarTodosTest() {
 
-        Iterable<Endereco> enderecos = enderecoService.buscarTodos();
-        assertNotNull(enderecos);
+        Iterable<Endereco> todosEnderecos = enderecoService.buscarTodos();
+        List<Endereco> listEnderecos = new ArrayList<>();
 
+        enderecoRepository.deleteAll();
+        enderecoService.salvar(endereco);
+
+        Endereco enderecoPorId = enderecoService.buscarPorId(endereco.getId());
+
+
+        for (Endereco enderecos: listEnderecos) {
+            listEnderecos.add(enderecoPorId);
+
+        }
+
+
+        assertEquals(listEnderecos, todosEnderecos);
+        assertNotNull(todosEnderecos);
+
+    }
+    @Test
+    public void deletarTodosTest(){
+        enderecoService.deletarTodos();
     }
 }

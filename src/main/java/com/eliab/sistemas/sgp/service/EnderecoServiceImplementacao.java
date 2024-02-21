@@ -30,4 +30,9 @@ public class EnderecoServiceImplementacao implements EnderecoService{
     public Endereco salvar(Endereco endereco) {
         return enderecoRepository.save(endereco);
     }
+
+    @Override
+    public void deletarTodos() {
+        enderecoRepository.deleteAll();
+    }
 }
