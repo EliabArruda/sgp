@@ -75,27 +75,10 @@ public class EnderecoServiceTest {
     @Test
     public void buscarTodosTest() {
 
-        Iterable<Endereco> todosEnderecos = enderecoService.buscarTodos();
-        List<Endereco> listEnderecos = new ArrayList<>();
-
         enderecoRepository.deleteAll();
         enderecoService.salvar(endereco);
 
-        Endereco enderecoPorId = enderecoService.buscarPorId(endereco.getId());
-
-
-        for (Endereco enderecos: listEnderecos) {
-            listEnderecos.add(enderecoPorId);
-
-        }
-
-
-        assertEquals(listEnderecos, todosEnderecos);
-        assertNotNull(todosEnderecos);
-
-    }
-    @Test
-    public void deletarTodosTest(){
-        enderecoService.deletarTodos();
+        assertEquals(enderecoRepository.findAll(), enderecoService.buscarTodos());
+        assertNotNull(enderecoService.buscarTodos());
     }
 }

@@ -60,7 +60,9 @@ public class EnderecoRepositoryTest {
     @Test
     public void saveTest() {
 
+        assertEquals(null, endereco.getId());
         Endereco enderecoSalvo = enderecoRepository.save(endereco);
+        assertNotNull(endereco.getId());
         assertEquals(1, enderecoRepository.findAll().size());
 
         assertNotNull(enderecoSalvo);
@@ -88,9 +90,12 @@ public class EnderecoRepositoryTest {
     @Test
     public void findByIdTest() {
 
+
         saveAll(enderecos);
         assertNotEquals(0, enderecoRepository.findAll().size());
         assertEquals(endereco, enderecoRepository.findById(endereco.getId()).get());
+        assertEquals(enderecoCopia, enderecoRepository.findById(enderecoCopia.getId()).get());
+        assertNotEquals(enderecoCopia, enderecoRepository.findById(endereco.getId()).get());
 
     }
 
