@@ -24,11 +24,15 @@ public class ProtocoloRepositoryTest {
 
     @Test
     public void saveTest(){
+            Protocolo protocolo = new Protocolo(); // Inicializa o objeto protocolo
 
-       Protocolo protocoloSalvo = protocoloRepository.save(protocolo);
+            protocolo.setProtocolo("01");
+            protocolo.setId(1L);
+            protocolo.setData("01/05/2022");
+            protocolo.setStatus("PENDENTE");
+        Protocolo protocoloSalvo = protocoloRepository.save(protocolo);
 
        assertNotNull(protocoloSalvo);
-
 
     }
 }

@@ -1,0 +1,24 @@
+spring:
+  security:
+    user:
+      name: eliab
+      password: silva123
+      roles: USERS
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_sgp
+    username: root
+    password: Et131220!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  main:
+    allow-circular-references: true
+
+logging:
+    level:
+      root: INFO
+      springframework: INFO
+      com.eliab.sistemas.sgp: INFO
