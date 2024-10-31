@@ -1,9 +1,4 @@
 spring:
-  security:
-    user:
-      name: eliab
-      password: silva123
-      roles: USERS
   jpa:
     show-sql: true
     hibernate:
