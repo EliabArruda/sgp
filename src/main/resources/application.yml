@@ -5,10 +5,10 @@ spring:
       ddl-auto: update
     open-in-view: false
   datasource:
-    url: jdbc:mysql://localhost:3306/db_sgp
-    username: root
-    password: Et131220!
-    driver-class-name: com.mysql.cj.jdbc.Driver
+      url: ${DB_URL}
+      username: ${DB_USERNAME}
+      password: ${DB_PASSWORD}
+      driver-class-name: com.mysql.cj.jdbc.Driver
   main:
     allow-circular-references: true
 
