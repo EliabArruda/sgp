@@ -1,7 +1,8 @@
-# Documentação Completa do SGP (Sistema de Gerenciamento de Protocolos)
+
+# Documentação Completa da API do SGP (Sistema de Gerenciamento de Protocolos)
 
 ## Visão Geral
-O SGP (Sistema de Gerenciamento de Protocolos) é uma aplicação que permite o gerenciamento de protocolos com diferentes estados. Esta documentação fornece uma visão geral completa de todas as partes significativas do projeto, incluindo frontend e backend, destacando estrutura, modelos, controladores, serviços, configurações e arquivos relevantes.
+O SGP (Sistema de Gerenciamento de Protocolos) é uma aplicação que permite o gerenciamento de protocolos com diferentes estados. Esta documentação fornece uma visão geral completa do backend, destacando a estrutura, os modelos, os controladores, os serviços e o tratamento de erros.
 
 ## Sumário
 - [Estrutura do Projeto](#estrutura-do-projeto)
@@ -10,13 +11,6 @@ O SGP (Sistema de Gerenciamento de Protocolos) é uma aplicação que permite o 
 - [Serviços](#serviços)
 - [Tratamento de Erros](#tratamento-de-erros)
 - [Configuração do Swagger](#configuração-do-swagger)
-- [Frontend](#frontend)
-    - [Estrutura do Frontend](#estrutura-do-frontend)
-    - [Arquivos CSS](#arquivos-css)
-    - [Arquivos HTML](#arquivos-html)
-    - [Arquivos JavaScript](#arquivos-javascript)
-    - [Configuração](#configuração-frontend)
-    - [Arquivo Favicon](#arquivo-favicon)
 
 ## Estrutura do Projeto
 O projeto está organizado da seguinte forma:
@@ -39,138 +33,91 @@ backend
 │   │   └── resources
 │   └── ...
 ```
-Aqui está uma breve descrição de cada diretório:
 
-- `backend`: Contém o código-fonte do backend da aplicação, incluindo controladores, modelos, serviços e configurações.
-- `frontend`: Contém o código-fonte do frontend da aplicação, incluindo arquivos CSS, HTML, JavaScript e configurações.
+Aqui está uma breve descrição de cada diretório:
+- `controller`: Contém os controladores da aplicação, responsáveis por definir os endpoints.
+- `exception`: Define exceções personalizadas para tratamento de erros.
+- `handle`: Lida com o tratamento centralizado de exceções.
+- `model`: Contém as classes que representam as entidades do sistema.
+- `repository`: Define as interfaces de repositório para interação com o banco de dados.
+- `service`: Contém as interfaces e implementações de serviços que encapsulam a lógica de negócios.
 
 ## Modelos
 ### Protocolo
-A classe Protocolo representa um protocolo no sistema. Ela possui os seguintes atributos:
-- `id`: Um identificador exclusivo do protocolo.
-- `protocolo`: O número de protocolo gerado automaticamente.
-- `requerente`: O requerente associado ao protocolo.
-- `status`: O status atual do protocolo (PENDENTE, DEFERIDO, INDEFERIDO).
-- `descricao`: Uma descrição do protocolo.
-- `data`: A data de criação do protocolo.
+A classe `Protocolo` representa um protocolo no sistema. Atributos principais:
+- `id`: Identificador exclusivo do protocolo.
+- `protocolo`: Número do protocolo gerado automaticamente.
+- `requerente`: Requerente associado ao protocolo.
+- `status`: Status do protocolo (PENDENTE, DEFERIDO, INDEFERIDO).
+- `descricao`: Descrição do protocolo.
+- `data`: Data de criação.
 
 ### Requerente
-A classe Requerente representa um requerente no sistema. Ela possui os seguintes atributos:
-- `id`: Um identificador exclusivo do requerente.
-- `nome`: O nome do requerente.
-- `endereco`: O endereço do requerente.
-- `email`: O endereço de e-mail do requerente.
-- `telefone`: O número de telefone do requerente.
+A classe `Requerente` representa um requerente no sistema. Atributos principais:
+- `id`: Identificador exclusivo do requerente.
+- `nome`: Nome do requerente.
+- `endereco`: Endereço do requerente.
+- `email`: Endereço de e-mail.
+- `telefone`: Número de telefone.
+
+### Endereco
+A classe `Endereco` representa o endereço de um requerente. Atributos principais:
+- `id`: Identificador exclusivo do endereço.
+- `cep`: Código postal.
+- `logradouro`: Rua ou avenida.
+- `uf`: Unidade federativa (estado).
+- `localidade`: Cidade.
+- `bairro`: Bairro.
+- `numeroCasa`: Número da residência.
 
 ### EnumStatus
-A enumeração EnumStatus define os possíveis estados de status que um protocolo pode ter. Ela possui três valores de enumeração: PENDENTE, DEFERIDO e INDEFERIDO.
+A enumeração `EnumStatus` define os estados possíveis de um protocolo: PENDENTE, DEFERIDO, INDEFERIDO.
 
 ## Controladores
 ### ProtocoloController
-A classe ProtocoloController define os endpoints da API relacionados a protocolos. Alguns dos endpoints incluem:
-- `GET /protocolo/busca-todos`: Retorna todos os protocolos cadastrados.
-- `GET /protocolo/{id}`: Retorna um protocolo específico com base em seu ID.
+Define os endpoints da API relacionados a protocolos:
+- `GET /protocolo/busca-todos`: Retorna todos os protocolos.
+- `GET /protocolo/{id}`: Retorna um protocolo específico pelo ID.
 - `POST /protocolo/salvar`: Salva um novo protocolo.
 - `PUT /protocolo/{id}/mudar-status`: Altera o status de um protocolo.
 
 ### RequerenteController
-A classe RequerenteController define os endpoints da API relacionados a requerentes. Alguns dos endpoints incluem:
-- `GET /requerente/busca-todos`: Retorna todos os requerentes cadastrados.
-- `GET /requerente/{id}`: Retorna um requerente específico com base em seu ID.
+Define os endpoints da API para gerenciamento de requerentes:
+- `GET /requerente/busca-todos`: Retorna todos os requerentes.
+- `GET /requerente/{id}`: Retorna um requerente específico pelo ID.
 - `POST /requerente/salvar`: Salva um novo requerente.
 
 ## Serviços
 ### ProtocoloService
-A interface ProtocoloService define os serviços relacionados a protocolos. Alguns dos métodos incluem:
-- `buscarTodos()`: Retorna todos os protocolos cadastrados.
-- `buscarPorId(Long id)`: Retorna um protocolo específico com base em seu ID.
+Define serviços relacionados a protocolos:
+- `buscarTodos()`: Retorna todos os protocolos.
+- `buscarPorId(Long id)`: Retorna um protocolo específico pelo ID.
 - `salvar(Protocolo protocolo)`: Salva um novo protocolo.
 - `mudarStatus(Long id, EnumStatus status)`: Altera o status de um protocolo.
 
 ### RequerenteService
-A interface RequerenteService define os serviços relacionados a requerentes. Alguns dos métodos incluem:
-- `buscarTodos()`: Retorna todos os requerentes cadastrados.
-- `buscarPorId(Long id)`: Retorna um requerente específico com base em seu ID.
+Define serviços para gerenciamento de requerentes:
+- `buscarTodos()`: Retorna todos os requerentes.
+- `buscarPorId(Long id)`: Retorna um requerente específico pelo ID.
 - `salvar(Requerente requerente)`: Salva um novo requerente.
 
+### EnderecoService
+Define os serviços para o gerenciamento de endereços:
+- `buscarTodos()`: Retorna todos os endereços cadastrados.
+- `buscarPorId(Long id)`: Retorna um endereço específico pelo ID.
+- `salvar(Endereco endereco)`: Salva um novo endereço.
+- `deletarTodos()`: Exclui todos os endereços.
+
+### Implementação dos Serviços
+A implementação dos serviços para cada entidade lida com as operações descritas, encapsulando a lógica de interação com o banco de dados e lidando com exceções, como o `EnderecoNotFoundException` para casos em que o endereço não é encontrado.
+
 ## Tratamento de Erros
-### ProtocoloNotFoundException
-A classe `ProtocoloNotFoundException` é uma exceção personalizada que é lançada quando um protocolo não é encontrado na API. Ela é usada para lidar com cenários em que um protocolo específico não existe.
+### ProtocoloNotFoundException e EnderecoNotFoundException
+Exceções personalizadas para protocolos e endereços, lançadas quando uma entidade específica não é encontrada.
 
 ### ProtocoloControllerAdvice
-A classe `ProtocoloControllerAdvice` é um controlador de aconselhamento que lida com o tratamento de exceções relacionadas a protocolos. Ela fornece respostas de erro formatadas adequadamente quando ocorrem exceções, como `ProtocoloNotFoundException` e validações de entrada falhadas.
+Controlador de aconselhamento para tratamento de exceções, fornecendo respostas de erro formatadas quando ocorrem falhas de validação ou a entidade não é encontrada.
 
 ## Configuração do Swagger
 ### SwaggerConfig
-A classe `SwaggerConfig` é responsável por configurar o Swagger, uma ferramenta de documentação interativa para a API. Ela define informações sobre a API, como título, descrição, versão e detalhes de contato. O Swagger permite que os desenvolvedores visualizem e testem a API por meio de uma interface da web amigável.
-
-## Frontend
-### Estrutura do Frontend
-O frontend do SGP está organizado da seguinte forma:
-
-```
-frontend
-├── css
-│ ├── adicionar_protocolo.css
-│ ├── editar_protocolo.css
-│ ├── fontawesome-free-5.3.1-web_all.min.css
-│ └── style.css
-├── html
-│ ├── adicionar_protocolo.html
-│ ├── editar_protocolo.html
-│ └── visualizar_protocolo.html
-├── js
-│ ├── fancybox
-│ │ └── (arquivos do plugin Fancybox)
-│ ├── util
-│ │ ├── adicionar_protocolo.js
-│ │ ├── editar_protocolo.js
-│ │ └── visualizar_protocolo.js
-│ ├── Chart-2.9.4.js
-│ ├── graficos.js
-│ ├── html_element_creator.js
-│ ├── jquery.mask.min.js
-│ ├── jquery.min.js
-│ ├── json_utils.js
-│ ├── popup.js
-│ ├── sgp.js
-│ └── telefone_mask.js
-├── webfonts
-│ └── (arquivos de fonte utilizados na aplicação)
-├── config.js
-├── favicon.ico
-├── index.html
-└── README.md
-```
-
-### Arquivos CSS
-- **adicionar_protocolo.css**: Estilos específicos para a página de adição de protocolo.
-- **editar_protocolo.css**: Estilos específicos para a página de edição de protocolo.
-- **fontawesome-free-5.3.1-web_all.min.css**: Arquivo CSS contendo ícones da biblioteca Font Awesome.
-- **style.css**: Estilos gerais compartilhados entre as páginas da aplicação.
-
-### Arquivos HTML
-- **adicionar_protocolo.html**: Página para adição de novos protocolos.
-- **editar_protocolo.html**: Página para edição de protocolos existentes.
-- **visualizar_protocolo.html**: Página para visualização detalhada de um protocolo.
-
-### Arquivos JavaScript
-- **fancybox/**: Pasta contendo arquivos do plugin Fancybox para exibição de imagens em um lightbox.
-- **util/**: Pasta contendo scripts JavaScript utilitários para as páginas específicas.
-- **Chart-2.9.4.js**: Biblioteca Chart.js para criação de gráficos na aplicação.
-- **graficos.js**: Script responsável pela criação e atualização dos gráficos na página.
-- **html_element_creator.js**: Script para criação dinâmica de elementos HTML na página.
-- **jquery.mask.min.js**: Plugin jQuery para máscaras de entrada em campos de formulário.
-- **jquery.min.js**: Biblioteca jQuery para manipulação do DOM e interações JavaScript.
-- **json_utils.js**: Funções utilitárias para manipulação de objetos JSON.
-- **popup.js**: Script para exibição de pop-ups na aplicação.
-- **sgp.js**: Script principal que contém a lógica de interação com o backend e atualização da interface do usuário.
-- **telefone_mask.js**: Script para aplicação de máscara de telefone em campos de formulário.
-
-### Configuração Frontend
-- **config.js**: Arquivo de configuração da aplicação contendo variáveis globais e configurações específicas.
-
-### Arquivo Favicon
-- **favicon.ico**: Ícone da aplicação exibido na barra de navegação do navegador.
-
-Essa documentação fornece uma visão geral completa da estrutura e funcionamento do Sistema de Gerenciamento de Protocolos, abrangendo tanto o backend quanto o frontend. Cada parte desempenha um papel importante na construção e operação do sistema, garantindo uma experiência de usuário eficiente e intuitiva.
+Configura o Swagger para documentação interativa da API, com informações como título, descrição, versão e contato. O Swagger oferece uma interface web para visualização e teste da API.
