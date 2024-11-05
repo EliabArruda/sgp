@@ -1,7 +1,0 @@
-AuthUserFile /var/www/html/sgp/passwd
-AuthName "SGP, Restricted Access"
-AuthType Basic
-<Limit GET POST>
-Require user admin secinfor %u
-</LIMIT>
-
