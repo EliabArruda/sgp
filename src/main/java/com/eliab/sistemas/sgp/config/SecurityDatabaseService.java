@@ -1,5 +1,4 @@
 package com.eliab.sistemas.sgp.config;
-
 import com.eliab.sistemas.sgp.model.Usuario;
 import com.eliab.sistemas.sgp.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +14,10 @@ import java.util.Set;
 @Service
 public class SecurityDatabaseService  implements UserDetailsService {
     @Autowired
-    private UsuarioRepository userRepository;
+    private UsuarioRepository usuarioRepository;
     @Override
     public UserDetails loadUserByUsername(String username) {
-        Usuario userEntity = userRepository.findByUsername(username);
+        Usuario userEntity = usuarioRepository.findByUsername(username);
         if (userEntity == null) {
             throw new UsernameNotFoundException(username);
         }
